@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/output.css">
+    <title>Sign Up</title>
+</head>
+<body class="bg-zinc-900">
+    <header>
+        <nav class="lg:flex lg:justify-between lg:mx-32 lg:my-8">
+            <div>
+                <a href="/" class="text-violet-300">membersONLY</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="lg:flex">
+        <form class="lg:flex lg:flex-col lg:w-3/5 text-slate-50 mx-32" action="" method="POST">
+            <div class="lg:flex">
+                <label for="firstname">First name
+                    <input type="text" name="firstname" id="firstname" class="w-full lg:bg-zinc-900 lg:rounded-md border-zinc-600 lg:border lg:p-2" required>
+                </label>
+                <label class="lg:ml-4" for="lastname">Last name
+                    <input type="text" name="lastname" id="lastname" class="w-full lg:bg-zinc-900 lg:rounded-md border-zinc-600 lg:border lg:p-2" required>
+                </label>
+            </div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" class="lg:rounded-md lg:bg-zinc-900 border-zinc-600 lg:border lg:p-2" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="lg:rounded-md lg:bg-zinc-900 border-zinc-600 lg:border lg:p-2" required>
+            <label for="confirmpassword">Confirm password</label>
+            <input type="password" name="confirmpassword" id="confirmpassword" class="lg:rounded-md lg:bg-zinc-900 border-zinc-600 lg:border lg:p-2">
+            <button class="bg-violet-300 lg:p-2 lg:rounded-md lg:text-zinc-900 lg:mt-4">Sign up</button>
+            <a class="text-blue-500 underline hover:text-violet-300" href="/login">Already have an account? <span class="font-bold">Log in!</span></a>
+        </form>
+    </main>
+</body>
+</html>

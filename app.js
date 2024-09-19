@@ -1,9 +1,9 @@
 require("dotenv").config();
 const path = require("node:path");
 const express = require("express");
+const passport = require("./passportConfig")
 const session = require("express-session");
-const passport = require("passport");
-const LocalStategy = require("passport-local").Strategy;
+
 
 
 
@@ -21,13 +21,36 @@ app.use(passport.session());
 
 
 
+
+
+const userController = require("./controllers/usersController");
+
+
 app.get("/", (req, res) => {
     res.render("index")
 })
 
+app.post("/login", passport.authenticate("local", {
+    successRedirect: "/dashboard",
+    failureRedirect: "/login"
+}) )
 
 
+app.get("/dashboard", (req, res) => {
+    res.render("dashboard", { user: req.user});
+});
 
+app.get("/signup", (req, res) => {
+    res.render("sign-up-form");
+});
+
+app.post("/signup", (req, res) => {
+    userController.createUser(req, res)
+})
+
+app.get("/login", (req, res) => {
+    res.render("log-in");
+})
 
 
 

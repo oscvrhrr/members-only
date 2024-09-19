@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/output.css">
+    <title>Log in</title>
+</head>
+<body class="bg-zinc-900">
+    <header>
+        <nav class="lg:flex lg:justify-between lg:mx-32 lg:my-8">
+            <div>
+                <a href="/" class="text-violet-300">membersONLY</a>
+            </div>
+        </nav>
+    </header>
+    <main class="lg:flex">
+        <form method="POST" action="" class="lg:flex lg:flex-col lg:w-3/5 text-slate-50 mx-32" >
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" class="lg:rounded-md lg:bg-zinc-900 border-zinc-600 lg:border lg:p-2" required>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="lg:rounded-md lg:bg-zinc-900 border-zinc-600 lg:border lg:p-2" required>
+            <button class="bg-violet-300 lg:p-2 lg:rounded-md lg:text-zinc-900 lg:mt-4">Log in</button>
+            <a class="text-blue-500 underline hover:text-violet-300" href="/signup">Dont have an account? <span class="font-bold">Sign up!</span></a>
+        </form>
+    </main>
+    
+</body>
+</html>

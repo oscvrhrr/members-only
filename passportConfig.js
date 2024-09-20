@@ -1,6 +1,7 @@
 const db = require("./db/pool")
 const passport = require("passport");
 const LocalStategy = require("passport-local").Strategy;
+const { bcrypt } = require("./controllers/usersController")
 
 
 //SETUP LOCAL STRATEGY
@@ -9,12 +10,13 @@ passport.use (
         try {
             const { rows } = await db.query("SELECT * FROM users WHERE username = $1", [username]);
             const user = rows[0];
+            const match = await bcrypt.compare(password, user.password);
 
             if (!user) {
                 return done(null, false, { message: "Incorrect username"});
             }
-            if (user.password !== password) {
-                return done(null, false, {message: "Incorrect password"});
+            if (!match) {
+                return done(null, false, { message: "Incorrect password" })
             }
             return done(null, user);
         }   catch (err) {

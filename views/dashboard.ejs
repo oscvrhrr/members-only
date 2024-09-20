@@ -12,12 +12,12 @@
         <a class="hover:text-violet-300" href="/logout">LOG OUT</a>
       <% } else { %>
         <h1>please log in</h1>
-        <form action="/login" method="POST">
+        <form action="/login" method="POST" class="lg:flex lg:flex-col lg:w-3/5 text-slate-50 mx-32">
           <label for="username">Username</label>
-          <input id="username" name="username" placeholder="username" type="text" />
+          <input type="text" name="username" id="username" class="lg:rounded-md lg:bg-zinc-900 border-zinc-600 lg:border lg:p-2" required>
           <label for="password">Password</label>
-          <input id="password" name="password" type="password" />
-          <button>Log In</button>
+          <input type="password" name="password" id="password" class="lg:rounded-md lg:bg-zinc-900 border-zinc-600 lg:border lg:p-2" required>
+          <button class="bg-violet-300 lg:p-2 lg:rounded-md lg:text-zinc-900 lg:mt-4">Log in</button>
         </form>
       <%}%>
     

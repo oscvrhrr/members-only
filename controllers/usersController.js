@@ -13,12 +13,34 @@ async function createUser(req, res) {
     }
 };
 
+async function createMessage(req, res) {
+    try {
+        const { title, message } = req.body;
+        const userId = req.user.id;
+        await db.createMessageInDb(userId, title, message)
+        res.redirect("/dashboard");
+    } catch(err) {
+        return console.log('error when creating a message', err);
+    }
+};
+
+async function getMessages(req, res) {
+    try {
+        const messages = await db.getMessagesFromDb();
+        res.render("dashboard", { messages, user: req.user })
+    } catch (err) {
+        return console.log("error getting messages", err);
+    }
+};
+
 
 
 
 
 
 module.exports = {
+    bcrypt,
     createUser,
-    bcrypt
+    createMessage,
+    getMessages
 }

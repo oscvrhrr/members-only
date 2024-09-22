@@ -19,18 +19,30 @@
             <a class="bg-gray-200 border border-gray-300 hover:bg-violet-300 hover:transition ease-in rounded-full inline-block h-fit px-3 py-1" href="/logout">Log out</a>
           </div>
         </nav>
-        <main>
-          <h1 class="lg:text-center lg:text-7xl lg:tracking-wide lg:font-extrabold mt-10 text-gray-400/80">Messages</h1>
+        <main class="lg:flex flex-col">
+          <div class="lg:flex lg:items-center lg:mx-auto">
+            <h1 class="lg:text-center lg:text-7xl lg:tracking-wide lg:font-extrabold mt-10 text-gray-400/80">Messages</h1>
+            <a class="bg-gray-200 border border-gray-300 hover:bg-violet-300 hover:transition ease-in rounded-full inline-block h-fit px-3 py-1 ml-2 mt-4" href="/message">+ Message</a>
+          </div>
+          <section>
+            <% messages.forEach((message) => { %>
+              <div class="lg:border border-gray-300 lg:w-2/5 lg:mx-auto lg:rounded-md p-4 bg-gray-200 lg:my-2">
+                <h2><%= message.username %></h2>
+                <h3><%= message.title %></h2>
+               <p><%= message.message %></p> 
+              </div>
+           <% }) %>
 
-           
+          </section>
         </main>
       <% } else { %>
-        <h1>please log in</h1>
-        <form action="/login" method="POST" class="lg:flex lg:flex-col lg:w-3/5 text-slate-50 mx-32">
+      
+        <form action="/login" method="POST" class="lg:flex lg:flex-col lg:w-3/5 bg-gray-200 mx-32 border border-gray-300 p-4">
+          <h1 class="text-center">Please log in</h1>
           <label for="username">Username</label>
-          <input type="text" name="username" id="username" class="lg:rounded-md lg:bg-zinc-900 border-zinc-600 lg:border lg:p-2" required>
+          <input type="text" name="username" id="username" class="lg:rounded-md lg:bg-gray1` border-zinc-600 lg:border lg:p-2" required>
           <label for="password">Password</label>
-          <input type="password" name="password" id="password" class="lg:rounded-md lg:bg-zinc-900 border-zinc-600 lg:border lg:p-2" required>
+          <input type="password" name="password" id="password" class="lg:rounded-md lg:bg-gray-100 border-zinc-600 lg:border lg:p-2" required>
           <button class="bg-violet-300 lg:p-2 lg:rounded-md lg:text-zinc-900 lg:mt-4">Log in</button>
         </form>
       <%}%>

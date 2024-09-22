@@ -11,8 +11,19 @@ async function createUserInDb(firstname, lastname, username, password) {
     };
 }
 
+async function createMessageInDb(userId, title, message) {
+    await pool.query("INSERT INTO messages (user_id, title, message, timestamp) VALUES($1, $2, $3, NOW())", [userId, title, message]);
+}
+
+async function getMessagesFromDb() {
+    const { rows } = await pool.query("SELECT messages.id, messages.title, messages.message, users.username FROM messages JOIN users ON messages.user_id = users.id");
+    return rows;
+}
+
 
 
 module.exports = {
-    createUserInDb
+    createUserInDb,
+    createMessageInDb,
+    getMessagesFromDb
 }

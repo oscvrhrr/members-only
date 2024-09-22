@@ -8,9 +8,6 @@ const session = require("express-session");
 
 
 
-
-
-
 const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -48,7 +45,7 @@ app.post("/login", passport.authenticate("local", {
 
 
 app.get("/dashboard", (req, res) => {
-    res.render("dashboard", { user: req.user});
+    userController.getMessages(req, res);
 });
 
 app.get("/signup", (req, res) => {
@@ -61,6 +58,14 @@ app.post("/signup", (req, res) => {
 
 app.get("/login", (req, res) => {
     res.render("log-in");
+})
+
+app.get("/message", (req, res) => {
+    res.render("create-message");
+})
+
+app.post("/message", (req, res) => {
+    userController.createMessage(req, res)
 })
 
 

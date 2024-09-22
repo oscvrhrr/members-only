@@ -10,17 +10,23 @@
     <header>
         <nav class="lg:flex lg:justify-between lg:mx-32 lg:my-8">
             <div>
-                <span class="text-violet-300">membersONLY</span>
+                <span>members<span class="text-violet-300">ONLY</span></span>
             </div>
             <div>
-                <a class="lg:px-2 lg:py-1 bg-violet-300 lg:rounded" href="/login">Log in</a>
-                <a class="lg:px-2 lg:py-1 bg-violet-300 lg:rounded" href="/signup">Sign up</a>
+                <a class="bg-gray-200 border border-gray-300 hover:bg-violet-300 hover:transition ease-in rounded-full inline-block h-fit px-3 py-1" href="/login">Log in</a>
+                <a class="bg-gray-200 border border-gray-300 hover:bg-violet-300 hover:transition ease-in rounded-full inline-block h-fit px-3 py-1" href="/signup">Sign up</a>
             </div>
         </nav>
     </header>
     <main class="text-center">
         <h1 class="lg:text-center lg:text-7xl lg:tracking-wide lg:font-extrabold mt-10 text-gray-400/80">Messages</h1>
-
+        <% messages.forEach((message) => { %>
+            <div class="lg:border lg:text-start border-gray-300 lg:w-2/5 lg:mx-auto lg:rounded-md py-4 px-6 bg-gray-200 lg:my-2">
+              <h2 class="font-semibold">VIP Member</h2>
+              <h3 class="font-bold pt-2"><%= message.title %></h2>
+             <p><%= message.message %></p> 
+            </div>
+         <% }) %>
     </main>
 
 </body>

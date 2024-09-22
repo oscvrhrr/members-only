@@ -26,7 +26,7 @@ const userController = require("./controllers/usersController");
 
 
 app.get("/", (req, res) => {
-    res.render("index")
+    userController.getMessagesForLanding(req, res);
 })
 
 app.get("/logout", (req, res, next) => {
@@ -45,7 +45,7 @@ app.post("/login", passport.authenticate("local", {
 
 
 app.get("/dashboard", (req, res) => {
-    userController.getMessages(req, res);
+    userController.getMessagesForDashboard(req, res);
 });
 
 app.get("/signup", (req, res) => {

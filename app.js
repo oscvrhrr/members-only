@@ -3,6 +3,7 @@ const path = require("node:path");
 const express = require("express");
 const passport = require("./passportConfig")
 const session = require("express-session");
+const pool = require("./db/pool");
 
 
 
@@ -15,7 +16,18 @@ app.set("view engine", "ejs");
 //parses the req.body
 app.use(express.static("public"));
 app.use(express.urlencoded({extended: false }));
-app.use(session({ secret: "cats", resave: false, saveUninitialized: false}));
+app.use(session({
+    store: new (require("connect-pg-simple")(session))({
+        pool: pool,
+        tableName: "session"
+    }),
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 24 * 60 * 60 * 1000
+    }
+}));
 app.use(passport.session());
 
 

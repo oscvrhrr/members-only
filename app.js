@@ -4,6 +4,7 @@ const express = require("express");
 const passport = require("./passportConfig")
 const session = require("express-session");
 const pool = require("./db/pool");
+const isAuth = require("./middleware/isAuth");
 
 
 
@@ -30,11 +31,13 @@ app.use(session({
 }));
 app.use(passport.session());
 
-
-
-
-
 const userController = require("./controllers/usersController");
+
+app.use((req, res, next) => {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    next();
+});
+
 
 
 app.get("/", (req, res) => {
@@ -56,7 +59,7 @@ app.post("/login", passport.authenticate("local", {
 }) )
 
 
-app.get("/dashboard", (req, res) => {
+app.get("/dashboard", isAuth, (req, res) => {
     userController.getMessagesForDashboard(req, res);
 });
 
@@ -79,6 +82,9 @@ app.get("/message", (req, res) => {
 app.post("/message", (req, res) => {
     userController.createMessage(req, res)
 })
+
+
+
 
 
 
